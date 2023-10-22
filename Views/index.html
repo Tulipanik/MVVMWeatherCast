@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Styles/css.css" />
+    <title>Weather Cast</title>
+  </head>
+  <body>
+    <div id="knockout-app">
+      <h1>Weather Cast!</h1>
+
+      <form data-bind="submit: getFormLocation">
+        <div>
+          <label for="location">Write here interesting location</label> <br />
+          <input id="location" />
+          <input type="submit" value="szukaj" />
+        </div>
+      </form>
+      <div>
+        <div id="current">
+          <div id="col1" data-bind="with: PastWeather">
+            <h2>Day before (24 hours before)</h2>
+            <div id="past_image">
+              <img data-bind="attr: {'src': weatherIcon}" />
+            </div>
+            <div>
+              Temperature:
+              <span data-bind="text: temperature"></span>
+            </div>
+          </div>
+          <div id="col2" data-bind="with: Location">
+            <h2>Info</h2>
+            <div>Country: <span data-bind="text: country"></span></div>
+            <div>Last measure time: <span></span></div>
+          </div>
+          <div id="col3">
+            <div data-bind="with: CurrentWeather">
+              <h2>Current weather</h2>
+              <span><img data-bind="attr: {'src': weatherIcon}" /></span>
+              <div>
+                Temperature: <span data-bind="text: temperature"></span>
+              </div>
+            </div>
+            <div data-bind="with: AirCondition">
+              Air Condition:
+              <span data-bind="text: airCondition"></span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>Hourly forecast</h2>
+          <table>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div>
+          <h2>Daily forecast</h2>
+          <table>
+            <thead></thead>
+            <tr data-bind="foreach: DailyForecast.get()">
+              <td data-bind="text: date"></td>
+            </tr>
+            <tbody>
+              <tr data-bind="foreach: DailyForecast.get()">
+                <td><src data-bind="attr: {'src': weatherIcon}"></src></td>
+              </tr>
+              <tr data-bind="foreach: DailyForecast.get()">
+                <td data-bind="text: maxTemperature"></td>
+              </tr>
+              <tr data-bind="foreach: DailyForecast.get()">
+                <td data-bind="text: minTemperature"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="error"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+      type="module"
+      src="../Scripts/ViewModel/CompleteViewModel.js"
+    ></script>
+  </body>
+</html>

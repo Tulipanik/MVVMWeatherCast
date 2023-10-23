@@ -9,7 +9,6 @@ export class DailyForecastViewModel {
     return this.data;
   }
   update(Array) {
-    console.log(Array);
     this.data(Array);
   }
 }

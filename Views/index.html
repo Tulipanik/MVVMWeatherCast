@@ -14,7 +14,7 @@
         <div>
           <label for="location">Write here interesting location</label> <br />
           <input id="location" />
-          <input type="submit" value="szukaj" />
+          <input type="submit" value="Search" />
         </div>
       </form>
       <div>
@@ -32,7 +32,6 @@
           <div id="col2" data-bind="with: Location">
             <h2>Info</h2>
             <div>Country: <span data-bind="text: country"></span></div>
-            <div>Last measure time: <span></span></div>
           </div>
           <div id="col3">
             <div data-bind="with: CurrentWeather">
@@ -51,27 +50,41 @@
         <div>
           <h2>Hourly forecast</h2>
           <table>
-            <thead></thead>
-            <tbody></tbody>
+            <thead>
+              <tr data-bind="foreach: HourlyForecast.get()">
+                <td data-bind="text: hour"></td>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr data-bind="foreach: HourlyForecast.get()">
+                <td><img data-bind="attr: {'src': weatherIcon}" /></td>
+              </tr>
+              <tr data-bind="foreach: HourlyForecast.get()">
+                <td data-bind="text: temperature.get()"></td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
         <div>
           <h2>Daily forecast</h2>
           <table>
-            <thead></thead>
-            <tr data-bind="foreach: DailyForecast.get()">
-              <td data-bind="text: date"></td>
-            </tr>
+            <thead>
+              <tr data-bind="foreach: DailyForecast.get()">
+                <td data-bind="text: date"></td>
+              </tr>
+            </thead>
+
             <tbody>
               <tr data-bind="foreach: DailyForecast.get()">
-                <td><src data-bind="attr: {'src': weatherIcon}"></src></td>
+                <td><img data-bind="attr: {'src': weatherIcon}" /></td>
               </tr>
               <tr data-bind="foreach: DailyForecast.get()">
-                <td data-bind="text: maxTemperature"></td>
+                <td data-bind="text: temperatureRange.getMax()"></td>
               </tr>
               <tr data-bind="foreach: DailyForecast.get()">
-                <td data-bind="text: minTemperature"></td>
+                <td data-bind="text: temperatureRange.getMin()"></td>
               </tr>
             </tbody>
           </table>

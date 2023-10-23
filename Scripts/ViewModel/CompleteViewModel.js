@@ -20,7 +20,6 @@ class CompleteViewModel {
 
     self.getFormLocation = function (formElement) {
       const location = formElement.querySelector("#location").value;
-      console.log("siema");
       getData(location);
     };
   }

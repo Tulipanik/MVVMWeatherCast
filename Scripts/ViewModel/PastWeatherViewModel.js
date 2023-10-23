@@ -7,7 +7,7 @@ export class PastWeatherViewModel {
   }
 
   update(data) {
-    this.temperature(data.temperature);
+    this.temperature(data.temperature.get());
     this.weatherIcon(data.weatherIcon);
   }
 }

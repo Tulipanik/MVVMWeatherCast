@@ -1,12 +1,18 @@
+import { TemperatureModel } from "./TemperatureModel.js";
+
 export class HourConditionModel {
-  constructor({ WeatherIcon = "", Temperature }) {
+  constructor({ DateTime = "", WeatherIcon = "", Temperature }) {
     var self = this;
 
+    const date = new Date(DateTime);
+
+    self.hour = `${date.getHours()}:${date.getMinutes()}`;
     self.weatherIcon = `./Icons/${WeatherIcon}-s.png`;
-    if (Temperature.Metric && Temperature.Metric.Value) {
-      self.temperature = Temperature.Metric.Value;
-    } else if (Temperature.Value) {
-      self.temperature = Temperature.Value;
+
+    if (Temperature.Metric) {
+      self.temperature = new TemperatureModel(Temperature.Metric);
+    } else {
+      self.temperature = new TemperatureModel(Temperature);
     }
   }
 }

@@ -8,6 +8,6 @@ export class CurrentWeatherViewModel {
 
   update(data) {
     this.weatherIcon(data.weatherIcon);
-    this.temperature(data.temperature);
+    this.temperature(data.temperature.get());
   }
 }

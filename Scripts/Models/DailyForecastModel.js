@@ -1,10 +1,28 @@
+import { TemperatureRangeModel } from "./TemperatureRangeModel.js";
+
 export class DailyForecastModel {
   constructor({ Date = "", Day = {}, Temperature = {} }) {
     var self = this;
 
-    self.date = Date || "";
+    const date = Date;
+
+    self.date = this.getDay(date);
     self.weatherIcon = `./Icons/${Day.Icon}-s.png`;
-    self.maxTemperature = Temperature.Maximum.Value || "";
-    self.minTemperature = Temperature.Minimum.Value || "";
+    self.temperatureRange = new TemperatureRangeModel(Temperature);
+  }
+
+  getDay(date) {
+    const weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    const day = new Date(date).getDay();
+    return weekdays[day];
   }
 }

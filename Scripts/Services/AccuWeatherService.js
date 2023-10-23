@@ -81,7 +81,6 @@ async function getDailyForecast(locationKey) {
 
   await getAPIRequest(endpointDailyForecast).then((data) => {
     const Array = data.DailyForecasts.map((element) => {
-      console.log(element.Day.Icon);
       return new DailyForecastModel(element);
     });
     combinedViewModel.getDailyForecast().update(Array);

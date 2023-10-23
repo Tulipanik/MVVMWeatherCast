@@ -5,6 +5,10 @@ export class HourlyForecastViewModel {
     self.data = ko.observableArray([]);
   }
 
+  get() {
+    return this.data;
+  }
+
   update(Array) {
     this.data(Array);
   }
